@@ -2,8 +2,9 @@ module.exports = {
   apps: [
     {
       name: "Corona-OHZ",
-      script: 'npm',
+      script: 'node_modules/next/dist/bin/next',
       args: 'start',
+      cwd: './',
       instances: "2",
       exec_mode: "cluster",
       env_production: {
