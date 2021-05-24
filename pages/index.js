@@ -40,7 +40,7 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
         <title>Corona OHZ</title>
       </Head>
       <main>
-        <div className="container disclaimer">asd</div>
+        {dayjs().isBefore(dayjs("2021-05-31")) && <div className="container disclaimer">Achtung! Diese Regelungen gelten erst ab dem 31.05.2021</div>}
         <div className="row dist-70-30">
           <section className="container inzidenz">
             <img

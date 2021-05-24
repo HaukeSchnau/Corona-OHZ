@@ -33,7 +33,7 @@ export default function Ampel({ scenario }) {
           </div>
         ))}
       </div>
-      {lights[scenario].text}
+      <div className={styles.scenarioInfo}>{lights[scenario].text}</div>
     </div>
   );
 }
