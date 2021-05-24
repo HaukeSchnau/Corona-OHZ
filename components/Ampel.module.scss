@@ -1,0 +1,41 @@
+$green: #35db51;
+$yellow: #f59f52;
+$red: #ea5339;
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.ampel {
+  border-radius: 1rem;
+  padding: 3rem;
+  background-color: #457b9d;
+}
+
+.light {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 2rem;
+  color: transparent;
+  background-color: #fff;
+  --color: #fff;
+
+  &.active {
+    color: #162943;
+    color: #fff;
+    background-color: var(--color);
+  }
+
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
