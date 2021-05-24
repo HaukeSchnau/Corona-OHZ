@@ -16,7 +16,7 @@ module.exports = {
     production: {
       user: "hauke",
       host: "haukeschnau.de",
-      ref: "origin/master",
+      ref: "origin/main",
       repo: "git@github.com:HaukeSchnau/Corona-OHZ.git",
       path: "/home/hauke/corona_ohz",
       "post-deploy":
