@@ -178,7 +178,7 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
 }
 
 Home.getInitialProps = async (ctx) => {
-  const res = await fetch("http://localhost:3000/api/history").then((res) =>
+  const res = await fetch("https://corona-ohz.de/api/history").then((res) =>
     res.json()
   );
   let max = 0;
