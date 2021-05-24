@@ -189,9 +189,13 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
 }
 
 Home.getInitialProps = async (ctx) => {
+  if (ctx.req) {
+    console.log(ctx.req.headers["X-Forwarded-For"]);
+    console.log(ctx.req.headers["Forwarded"]);
+  }
   const url = "https://corona-ohz.de/api/history";
   const localUrl = "http://localhost:3000/api/history";
-  const res = await fetch(localUrl).then((res) => res.json());
+  const res = await fetch(url).then((res) => res.json());
   let max = 0;
   const convertedHistory = Object.entries(res).map((entry) => {
     max = Math.max(max, entry[1]);
