@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "Corona-OHZ",
       script: 'node_modules/next/dist/bin/next',
-      args: 'start',
+      args: 'start -p 8084',
       cwd: './',
       instances: "2",
       exec_mode: "cluster",
