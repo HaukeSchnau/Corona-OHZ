@@ -179,11 +179,9 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
         </div>
       </div>
       <footer>
-        <div className="copy">
-          &copy; 2021 Hauke Schnau
-        </div>
+        <div className="copy">&copy; 2021 Hauke Schnau</div>
         <Link href="/impressum">
-          <a>Impressum & Datenschutz</a>
+          <a className="legal">Impressum & Datenschutz</a>
         </Link>
       </footer>
     </div>
@@ -191,9 +189,9 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
 }
 
 Home.getInitialProps = async (ctx) => {
-  const res = await fetch("https://corona-ohz.de/api/history").then((res) =>
-    res.json()
-  );
+  const url = "https://corona-ohz.de/api/history";
+  const localUrl = "http://localhost:3000/api/history";
+  const res = await fetch(localUrl).then((res) => res.json());
   let max = 0;
   const convertedHistory = Object.entries(res).map((entry) => {
     max = Math.max(max, entry[1]);
