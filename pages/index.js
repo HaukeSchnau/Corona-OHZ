@@ -10,6 +10,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import Head from "next/head";
+import Link from "next/link";
 import dayjs from "dayjs";
 import "dayjs/locale/de";
 import Ampel from "../components/Ampel";
@@ -40,7 +41,11 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
         <title>Corona OHZ</title>
       </Head>
       <main>
-        {dayjs().isBefore(dayjs("2021-05-31")) && <div className="container disclaimer">Achtung! Diese Regelungen gelten erst ab dem 31.05.2021</div>}
+        {dayjs().isBefore(dayjs("2021-05-31")) && (
+          <div className="container disclaimer">
+            Achtung! Diese Regelungen gelten erst ab dem 31.05.2021
+          </div>
+        )}
         <div className="row dist-70-30">
           <section className="container inzidenz">
             <img
@@ -173,6 +178,14 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
           </div>
         </div>
       </div>
+      <footer>
+        <div className="copy">
+          &copy; 2021 Hauke Schnau
+        </div>
+        <Link href="/impressum">
+          <a>Impressum & Datenschutz</a>
+        </Link>
+      </footer>
     </div>
   );
 }

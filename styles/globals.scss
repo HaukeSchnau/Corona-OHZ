@@ -20,16 +20,18 @@ a {
 html,
 body {
   width: 100%;
-  color: $dark;
+  color: #fff;
   overflow-x: hidden;
 }
 
 body {
   background-color: $dark;
   padding: 5rem $hPadding;
+  padding-bottom: 0;
 
   @media only screen and (min-width: 768px) {
     padding: 5rem $desktopPadding;
+    padding-bottom: 0;
   }
 }
 
@@ -48,13 +50,14 @@ h4 {
 
 .container {
   background-color: $white;
+  color: $dark;
   padding: 2rem clamp(1rem, 5vw, 4rem);
   position: relative;
 
   .bg-img {
     position: absolute;
     z-index: -1;
-    opacity: .8;
+    opacity: 0.8;
 
     &.red {
       top: 4rem;
@@ -154,4 +157,13 @@ h4 {
   margin-bottom: 2rem;
   font-weight: bold;
   text-align: center;
+}
+
+footer {
+  color: #fff;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+  padding: 4rem 0;
 }
