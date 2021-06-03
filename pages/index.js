@@ -41,11 +41,13 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
         <title>Corona OHZ</title>
       </Head>
       <main>
-        {dayjs().isBefore(dayjs("2021-05-31")) && (
+        {dayjs().isBefore(dayjs("2021-05-31")) ? (
           <div className="container disclaimer">
             Achtung! Diese Regelungen gelten erst ab dem 31.05.2021
           </div>
-        )}
+        ) :           <div className="container disclaimer">
+          Achtung! Je nach Schule könnten die unten genannten Regelungen abweichen!
+      </div>}
         <div className="row dist-70-30">
           <section className="container inzidenz">
             <img
@@ -179,7 +181,7 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
         </div>
       </div>
       <footer>
-        <div className="copy">&copy; 2021 Hauke Schnau</div>
+        <div className="copy">&copy; 2021 Kreisschülerrat OHZ</div>
         <Link href="/impressum">
           <a className="legal">Impressum & Datenschutz</a>
         </Link>
