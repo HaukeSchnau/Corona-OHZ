@@ -1,6 +1,9 @@
+import Head from "next/head"
+
 export default function Impressum() {
   return (
     <div class="impressum">
+      <Head><title>Impressum | Corona OHZ</title></Head>
       <h1>Impressum</h1>
       <p>Angaben gemäß § 5 TMG</p>
       <p>

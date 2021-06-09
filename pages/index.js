@@ -182,6 +182,9 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
       </div>
       <footer>
         <div className="copy">&copy; 2021 Kreisschülerrat OHZ</div>
+        <div className="dev">
+          Eine Hauke Schnau Produktion
+        </div>
         <Link href="/impressum">
           <a className="legal">Impressum & Datenschutz</a>
         </Link>
