@@ -17,7 +17,7 @@ import Ampel from "../components/Ampel";
 
 dayjs.locale("de");
 
-const chartPadding = 20;
+const chartPadding = .2;
 const referenceOpacity = 0.3;
 
 export default function Home({ currentValue, lastDate, history, maxValue }) {
@@ -34,6 +34,8 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
       }
     });
   }, []);
+
+  const maxWithPadding = Math.round(maxValue * (1+chartPadding))
 
   return (
     <div className="root">
@@ -63,28 +65,28 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
                 margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
               >
                 <XAxis dataKey="date" tickFormatter={formatDate} />
-                <YAxis domain={[0, maxValue + chartPadding]} />
+                <YAxis domain={[0, maxWithPadding]} />
                 <Tooltip
                   labelFormatter={formatDate}
                   formatter={tooltipFormatter}
                 />
                 <ReferenceArea
                   y1={0}
-                  y2={50}
+                  y2={Math.min(50, maxWithPadding)}
                   fill="#75B558"
                   fillOpacity={referenceOpacity}
                   label="Szenario A"
                 />
                 <ReferenceArea
                   y1={50}
-                  y2={Math.min(165, maxValue + chartPadding)}
+                  y2={Math.min(165, maxWithPadding)}
                   fill="#F59F52"
                   fillOpacity={referenceOpacity}
                   label="Szenario B"
                 />
                 <ReferenceArea
                   y1={165}
-                  y2={Math.min(99999, maxValue + chartPadding)}
+                  y2={Math.min(99999, maxWithPadding)}
                   fill="#EA5339"
                   fillOpacity={referenceOpacity}
                   label="Szenario C"
@@ -197,19 +199,23 @@ Home.getInitialProps = async (ctx) => {
   const url = "https://corona-ohz.de/api/history";
   const localUrl = "http://localhost:3000/api/history";
   const res = await fetch(url).then((res) => res.json());
+
+  const maxDays = 14;
+
   let max = 0;
-  const convertedHistory = Object.entries(res).map((entry) => {
-    max = Math.max(max, entry[1]);
+  const convertedHistory = Object.entries(res).map((entry, i) => {
+    if(i > Object.entries(res).length - maxDays) max = Math.max(max, entry[1]);
     return {
       date: dayjs(entry[0]).unix(),
       inzidenz: entry[1],
     };
   });
   convertedHistory.sort((a, b) => dayjs.unix(a.date).diff(dayjs.unix(b.date)));
+  const slicedHistory = convertedHistory.length > maxDays ? convertedHistory.slice(-maxDays) : convertedHistory;
   return {
-    history: convertedHistory,
-    lastDate: convertedHistory[convertedHistory.length - 1].date,
-    currentValue: convertedHistory[convertedHistory.length - 1].inzidenz,
+    history: slicedHistory,
+    lastDate: slicedHistory[slicedHistory.length - 1].date,
+    currentValue: slicedHistory[slicedHistory.length - 1].inzidenz,
     maxValue: max,
   };
 };
