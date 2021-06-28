@@ -184,9 +184,9 @@ export default function Home({ currentValue, lastDate, history, maxValue }) {
       </div>
       <footer>
         <div className="copy">&copy; 2021 Kreisschülerrat OHZ</div>
-        <div className="dev">
+        <a className="dev" href="https://haukeschnau.de">
           Eine Hauke Schnau Produktion
-        </div>
+        </a>
         <Link href="/impressum">
           <a className="legal">Impressum & Datenschutz</a>
         </Link>
@@ -204,7 +204,7 @@ Home.getInitialProps = async (ctx) => {
 
   let max = 0;
   const convertedHistory = Object.entries(res).map((entry, i) => {
-    if(i > Object.entries(res).length - maxDays) max = Math.max(max, entry[1]);
+    if(i > Object.entries(res).length - maxDays - 1) max = Math.max(max, entry[1]);
     return {
       date: dayjs(entry[0]).unix(),
       inzidenz: entry[1],
